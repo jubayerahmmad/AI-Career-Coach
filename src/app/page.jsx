@@ -1,11 +1,20 @@
-import HeroSection from "@/components/HeroSection";
+import Features from "@/components/landing-page-components/Features";
+import HeroSection from "@/components/landing-page-components/HeroSection";
+import Stats from "@/components/landing-page-components/Stats";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <div className="grid-background"></div>
+      {/* Hero Section */}
       <HeroSection />
-    </div>
+
+      {/* Features Section */}
+      <Features />
+
+      {/* Stats Section */}
+      <Stats />
+    </>
   );
 };
 

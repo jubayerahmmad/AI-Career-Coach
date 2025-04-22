@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
@@ -58,7 +58,7 @@ const HeroSection = () => {
           </Link>
           <Link href="/dashboard">
             <Button variant="outline" size="lg" className="px-8">
-              Demo
+              Watch Demo
             </Button>
           </Link>
         </div>
