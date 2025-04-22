@@ -37,7 +37,9 @@ export default function RootLayout({ children }) {
             <main className="min-h-screen">{children}</main>
             {/* Footer */}
             <footer className="bg-muted/50 py-6 text-center text-gray-200">
-              <p>Made with ❤️ By Jubayer Ahmmad</p>
+              <p>
+                Made with ❤️ By <span className="italic">Jubayer Ahmmad</span>
+              </p>
             </footer>
           </ThemeProvider>
         </body>
