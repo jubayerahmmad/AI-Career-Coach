@@ -3,7 +3,7 @@ import { db } from "./prisma";
 
 export const createUser = async () => {
   const user = await currentUser();
-  console.log(user);
+  // console.log(user);
 
   if (!user) {
     return null;
@@ -28,7 +28,7 @@ export const createUser = async () => {
         email: user.emailAddresses[0].emailAddress,
       },
     });
-    console.log(newUser);
+    // console.log(newUser);
 
     return newUser;
   } catch (error) {

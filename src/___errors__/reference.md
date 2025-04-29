@@ -41,14 +41,4 @@ Happened because:
 - Now, `createUser()` can be imported and called safely.
 - No API Route or Server Action needed since Prisma and Clerk run safely on server components.
 
-✅ Issue solved!
-
----
-
-### 📌 Key Learnings
-
-- **Never** import server-only libraries inside client components.
-- **Separate client-side and server-side logic** carefully.
-- **API routes** or **Server Actions** are the bridge between client UI and server-side operations.
-
 ---

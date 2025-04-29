@@ -1,5 +1,5 @@
 const MainLayout = ({ children }) => {
-  return <div>{children}</div>;
+  return <div className="mt-20 container mx-auto mb-16">{children}</div>;
 };
 
 export default MainLayout;
