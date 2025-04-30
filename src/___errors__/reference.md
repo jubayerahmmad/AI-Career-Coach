@@ -42,3 +42,12 @@ Happened because:
 - No API Route or Server Action needed since Prisma and Clerk run safely on server components.
 
 ---
+
+**Problem:**  
+TypeError: Cannot read properties of undefined (reading `parseAsync`)
+**Reason:**
+
+useForm({
+resolver: zodResolver(onboardingSchema)})
+
+Forgot to add `onboardingSchema` on zodResolver
