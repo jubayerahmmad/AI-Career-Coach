@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,8 @@ import { Button } from "@/components/ui/button";
 import { onboardingSchema } from "@/lib/schema";
 import useFetch from "@/hooks/useFetch";
 import { updateUser } from "@/actions/user";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const OnboardingForm = ({ industries }) => {
   const [selectedIndustry, setSelectedIndustry] = useState(null);
@@ -40,21 +42,41 @@ const OnboardingForm = ({ industries }) => {
   } = useForm({
     resolver: zodResolver(onboardingSchema),
   });
+  const watchIndustry = watch("industry");
   const {
     loading,
     fn: updateUserFn,
     data: updateResult,
   } = useFetch(updateUser);
 
-  const watchIndustry = watch("industry");
-
   const handleOnSubmit = async (values) => {
     console.log("form value", values);
     try {
+      const formattedIndustry = `${values.industry}-${values.subIndustry
+        .toLowerCase()
+        .replace(/ /g, "-")}`; // lowercase & replace spaces with hyphens
+      console.log("formattedIndustry", formattedIndustry);
+      await updateUserFn({
+        ...values,
+        industry: formattedIndustry,
+      });
+      //  can be used here too but separating to useEffect is more scalable
+      // router.push("/dashboard");
+      // router.refresh();
+      // toast.success("Profile Completed Successfully");
     } catch (error) {
-      console.log("handleOnSubmit error", error);
+      console.error("Onboarding error:", error);
     }
   };
+  useEffect(() => {
+    // ✅ This effect listens for when the update is successful and loading is false. Keeps  form submit function focused only on handling and sending data. Ensures the UI reacts only after the async state (loading, updateResult) is updated — which is especially useful if you wrap this in a custom hook (useFetch) where the data/state updates outside the local function.
+
+    if (updateResult?.success && !loading) {
+      toast.success("Profile completed successfully!");
+      router.push("/dashboard");
+      router.refresh();
+    }
+  }, [updateResult, loading]);
 
   return (
     <div className="flex items-center justify-center bg-background">
@@ -194,8 +216,15 @@ const OnboardingForm = ({ industries }) => {
               )}
             </div>
 
-            <Button type="submit" className="w-full">
-              Complete Profile
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Saving...
+                </>
+              ) : (
+                "Complete Profile"
+              )}
             </Button>
           </form>
         </CardContent>

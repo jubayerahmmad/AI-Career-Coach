@@ -61,7 +61,7 @@ export const updateUser = async (data) => {
     console.log(result);
 
     // return result.user;
-    return result.updateUser;
+    return { sucess: true, ...result };
   } catch (error) {
     console.error("Error updating user and industry:", error.message);
     throw new Error("Failed to update profile");
