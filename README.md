@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SENS-AI 🎯
 
-## Getting Started
+_Your personalized AI-powered career coaching platform_
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Overview
+
+**SENS-AI** helps users discover career paths tailored to their skills and interests. Through intelligent onboarding, industry insights, and skill-based recommendations, users receive ongoing career coaching and trends.
+
+Built with:
+
+- Next.js 15 App Router
+- ShadCN UI for sleek design
+- Clerk for authentication
+- Prisma ORM + PostgreSQL (via Neon)
+- React Hook Form + Zod validation
+- Sonner for toast notifications
+
+---
+
+## ✨ Features
+
+- Will be Added Soon
+
+---
+
+## 🛠️ Tech Stack
+
+| Category      | Tech                    |
+| ------------- | ----------------------- |
+| Frontend      | Next.js 15, React       |
+| Styling       | Tailwind CSS, ShadCN UI |
+| Forms         | React Hook Form, Zod    |
+| Auth          | Clerk                   |
+| Database      | PostgreSQL (via Neon)   |
+| ORM           | Prisma                  |
+| Notifications | Sonner                  |
+
+---
+
+## 📦 Dependencies
+
+```json
+"@clerk/nextjs": "^6.16.0",
+"@clerk/themes": "^2.2.34",
+"@hookform/resolvers": "^5.0.1",
+"@prisma/client": "^6.6.0",
+"@radix-ui/react-accordion": "^1.2.7",
+"@radix-ui/react-alert-dialog": "^1.1.10",
+"@radix-ui/react-dialog": "^1.1.10",
+"@radix-ui/react-dropdown-menu": "^2.1.10",
+"@radix-ui/react-label": "^2.1.4",
+"@radix-ui/react-progress": "^1.1.4",
+"@radix-ui/react-radio-group": "^1.3.2",
+"@radix-ui/react-select": "^2.2.2",
+"@radix-ui/react-slot": "^1.2.0",
+"@radix-ui/react-tabs": "^1.1.7",
+"class-variance-authority": "^0.7.1",
+"clsx": "^2.1.1",
+"inngest": "^3.35.0",
+"lucide-react": "^0.501.0",
+"next": "15.3.1",
+"next-themes": "^0.4.6",
+"react": "^19.0.0",
+"react-dom": "^19.0.0",
+"react-hook-form": "^7.56.1",
+"sonner": "^2.0.3",
+"tailwind-merge": "^3.2.0",
+"tw-animate-css": "^1.2.5",
+"zod": "^3.24.3"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛆 Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repo**
 
-## Learn More
+   ```bash
+   git clone https://github.com/jubayerahmmad/AI-Career-Coach
+   cd sens-ai
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Set up environment variables**
 
-## Deploy on Vercel
+   Create a `.env` file and add:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```env
+   DATABASE_URL=your_neon_database_url
+   CLERK_SECRET_KEY=your_clerk_secret
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/register
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+   ```
+
+4. **Push Prisma schema & seed database**
+
+   ```bash
+   npx prisma migrate dev --name create-models
+   ```
+
+5. **Run the dev server**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 🙌 Contributing
+
+Contributions are welcome! Open issues, suggest features, or fork and create a pull request.
+
+---
