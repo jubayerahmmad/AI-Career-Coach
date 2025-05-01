@@ -40,7 +40,8 @@ export default function RootLayout({ children }) {
             {/* Footer */}
             <footer className="bg-muted/50 py-6 text-center text-gray-200">
               <p>
-                Made with ❤️ By <span className="italic">Jubayer Ahmmad</span>
+                Made with ❤️ By{" "}
+                <span className="font-bold">Jubayer Ahmmad</span>
               </p>
             </footer>
           </ThemeProvider>

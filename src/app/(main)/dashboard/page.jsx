@@ -7,7 +7,7 @@ const Dashboard = async () => {
   const { isOnboarded } = await getUserOnboardingStatus();
   if (!isOnboarded) redirect("/onboarding");
 
-  return <div>Dashboard</div>;
+  return <div>Industry Insights Page</div>;
 };
 
 export default Dashboard;

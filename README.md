@@ -101,6 +101,8 @@ Built with:
    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/register
    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+
+   GEMINI_API_KEY=your_gemini_key
    ```
 
 4. **Push Prisma schema & seed database**
