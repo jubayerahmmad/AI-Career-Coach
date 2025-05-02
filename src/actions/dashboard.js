@@ -32,13 +32,12 @@ export const generateAIInsights = async (industry) => {
     contents: prompt,
   });
 
-  const text = response.text;
-  const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
+  const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
 
-  console.log("response.text (cleaned)-->", cleanedText);
+  console.log("response.text (cleaned)-->", text);
   console.log("full response-->", response);
-  //   return JSON.parse(response.text);
-  return JSON.parse(cleanedText);
+
+  return JSON.parse(text);
 };
 
 export const getIndustryInsights = async () => {
@@ -48,6 +47,9 @@ export const getIndustryInsights = async () => {
   const user = await db.user.findUnique({
     where: {
       clerkUserId: userId,
+    },
+    include: {
+      industryInsight: true,
     },
   });
   if (!user) throw new Error("User Not Found");
@@ -67,7 +69,7 @@ export const getIndustryInsights = async () => {
 
     return industryInsight;
   }
-  console.log("user from dashboard.js", user);
+  // console.log("user from dashboard.js", user);
 
   return user.industryInsight;
 };

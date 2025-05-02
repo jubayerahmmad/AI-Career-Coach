@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -43,11 +43,7 @@ const OnboardingForm = ({ industries }) => {
     resolver: zodResolver(onboardingSchema),
   });
   const watchIndustry = watch("industry");
-  const {
-    loading,
-    fn: updateUserFn,
-    data: updateResult,
-  } = useFetch(updateUser);
+  const { loading, fn: updateUserFn } = useFetch(updateUser);
 
   const handleOnSubmit = async (values) => {
     console.log("form value", values);
@@ -60,23 +56,14 @@ const OnboardingForm = ({ industries }) => {
         ...values,
         industry: formattedIndustry,
       });
-      //  can be used here too but separating to useEffect is more scalable
-      // router.push("/dashboard");
-      // router.refresh();
-      // toast.success("Profile Completed Successfully");
+
+      router.push("/dashboard");
+      router.refresh();
+      toast.success("Profile Completed Successfully");
     } catch (error) {
       console.error("Onboarding error:", error);
     }
   };
-  useEffect(() => {
-    // ✅ This effect listens for when the update is successful and loading is false. Keeps  form submit function focused only on handling and sending data. Ensures the UI reacts only after the async state (loading, updateResult) is updated — which is especially useful if you wrap this in a custom hook (useFetch) where the data/state updates outside the local function.
-
-    if (updateResult?.success && !loading) {
-      toast.success("Profile completed successfully!");
-      router.push("/dashboard");
-      router.refresh();
-    }
-  }, [updateResult, loading]);
 
   return (
     <div className="flex items-center justify-center bg-background">
