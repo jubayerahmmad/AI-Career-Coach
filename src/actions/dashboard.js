@@ -35,7 +35,7 @@ export const generateAIInsights = async (industry) => {
   const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
 
   // console.log("response.text (cleaned)-->", text);
-  // console.log("full response-->", response);
+  console.log("full response from ai dashboard.js -->", response);
 
   return JSON.parse(text);
 };
@@ -69,7 +69,6 @@ export const getIndustryInsights = async () => {
 
     return industryInsight;
   }
-  // console.log("user from dashboard.js", user);
 
   return user.industryInsight;
 };

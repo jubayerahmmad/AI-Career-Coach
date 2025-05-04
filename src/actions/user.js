@@ -55,9 +55,8 @@ export const updateUser = async (data) => {
         timeout: 10000, //default 5000
       }
     );
-    console.log(result);
+    console.log("result from user.js", result);
 
-    // return result.user;
     return { sucess: true, ...result };
   } catch (error) {
     console.error("Error updating user and industry:", error.message);
