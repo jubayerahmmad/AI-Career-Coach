@@ -100,7 +100,7 @@ const Quiz = () => {
         correct++;
       }
     });
-    return correct;
+    return (correct / quizData.length) * 100;
   };
 
   const finishQuiz = async () => {

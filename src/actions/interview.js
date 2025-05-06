@@ -26,7 +26,7 @@ export const generateQuiz = async () => {
   console.log("user from interview.js--> ", user); // user:{industry: terch-software-development, skills:[js,py]}
 
   const prompt = `
-    Generate 2 technical interview questions for a ${
+    Generate 4 technical interview questions for a ${
       user.industry
     } professional${
     user.skills?.length ? ` with expertise in ${user.skills.join(", ")}` : ""
@@ -62,16 +62,15 @@ export const generateQuiz = async () => {
   }
 };
 
-// Save Quiz Result
 export async function saveQuizResult(questions, answers, score) {
-  console.log("questions from saveQuizResult interview.js", questions);
-  console.log("answers from saveQuizResult interview.js", answers);
-  console.log("score from saveQuizResult interview.js", score);
+  // console.log("questions from saveQuizResult interview.js", questions);
+  // console.log("answers from saveQuizResult interview.js", answers);
+  // console.log("score from saveQuizResult interview.js", score);
 
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
+  const user = await db.user?.findUnique({
     where: { clerkUserId: userId },
   });
 
@@ -116,7 +115,7 @@ export async function saveQuizResult(questions, answers, score) {
       });
 
       improvementTip = tipResult.text.trim();
-      console.log("improvementTip :", improvementTip);
+      // console.log("improvementTip :", improvementTip);
     } catch (error) {
       console.error("Error generating improvement tip:", error);
       // Continue without improvement tip if generation fails
@@ -144,7 +143,7 @@ export async function getAssessments() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
+  const user = await db.user?.findUnique({
     where: { clerkUserId: userId },
   });
 
