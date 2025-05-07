@@ -34,7 +34,6 @@ export const generateAIInsights = async (industry) => {
 
   const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
 
-  // console.log("response.text (cleaned)-->", text);
   console.log("full response from ai dashboard.js -->", response);
 
   return JSON.parse(text);

@@ -10,7 +10,7 @@ export const createUser = async () => {
   }
 
   try {
-    const loggedInUser = await db.user.findUnique({
+    const loggedInUser = await db.user?.findUnique({
       where: {
         clerkUserId: user.id,
       },
