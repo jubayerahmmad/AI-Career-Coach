@@ -9,7 +9,7 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "SENSAI - AI CAREER COACH",
+  title: "Intervise | Your AI Career Assistant",
   description:
     "An AI-powered career coaching platform to guide you towards success.",
 };
@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
     >
       <html lang="en" suppressHydrationWarning>
         <head>
-          <link rel="icon" href="/logo.png" sizes="any" />
+          <link rel="icon" href="/logo-icon.png" sizes="any" />
         </head>
         <body className={`${inter.className} `}>
           <ThemeProvider

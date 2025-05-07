@@ -1,12 +1,10 @@
-# SENS-AI 🎯
-
-_Your personalized AI-powered career coaching platform_
-
+<h1 align="center">Intervise</h1>
+<p align="center"><em>Your AI Career Assistant</em></p>
 ---
 
 ## 🚀 Overview
 
-**SENS-AI** helps users discover career paths tailored to their skills and interests. Through intelligent onboarding, industry insights, and skill-based recommendations, users receive ongoing career coaching and trends.
+**INTERVISE** Intervise is an AI-powered career development platform designed to help users prepare for job interviews, track growth, and build professional materials.
 
 Built with:
 
@@ -21,7 +19,23 @@ Built with:
 
 ## ✨ Features
 
-- Will be Added Soon
+- User authentication
+
+- Mock interview quizzes
+
+- Explanation mode for quiz answers
+
+- AI-generated improvement suggestions
+
+- Weekly industry insights via scheduled tasks (Inngest + Gemini API)
+
+- Quiz result tracking
+
+Planned Features:
+
+- AI-powered resume builder
+
+- AI-powered cover letter builder
 
 ---
 
@@ -79,7 +93,7 @@ Built with:
 
    ```bash
    git clone https://github.com/jubayerahmmad/AI-Career-Coach
-   cd sens-ai
+   cd intervise
    ```
 
 2. **Install dependencies**
@@ -95,7 +109,7 @@ Built with:
    ```env
    DATABASE_URL=your_neon_database_url
    CLERK_SECRET_KEY=your_clerk_secret
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/register

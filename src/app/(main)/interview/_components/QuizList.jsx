@@ -47,38 +47,45 @@ const QuizList = ({ assessments }) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {assessments.map((assessment, index) => {
-              return (
-                <Card
-                  key={assessment.id}
-                  className="cursor-pointer hover:bg-muted/50 transition-colors"
-                  onClick={() => setSelectedQuiz(assessment)}
-                >
-                  <CardHeader>
-                    <CardTitle className="gradient-title text-2xl">
-                      Quiz {index + 1}
-                    </CardTitle>
-                    <CardDescription className="flex justify-between w-full">
-                      <div>Score: {assessment.quizScore.toFixed(1)}%</div>
-                      <div>
-                        {format(
-                          new Date(assessment.createdAt),
-                          "MMMM dd, yyyy HH:mm"
-                        )}
-                      </div>
-                    </CardDescription>
-                  </CardHeader>
+            {assessments.length ? (
+              assessments.map((assessment, index) => {
+                return (
+                  <Card
+                    key={assessment.id}
+                    className="cursor-pointer hover:bg-muted/50 transition-colors"
+                    onClick={() => setSelectedQuiz(assessment)}
+                  >
+                    <CardHeader>
+                      <CardTitle className="gradient-title text-2xl">
+                        Quiz {index + 1}
+                      </CardTitle>
+                      <CardDescription className="flex justify-between w-full">
+                        <div>Score: {assessment.quizScore.toFixed(1)}%</div>
+                        <div>
+                          {format(
+                            new Date(assessment.createdAt),
+                            "MMMM dd, yyyy HH:mm"
+                          )}
+                        </div>
+                      </CardDescription>
+                    </CardHeader>
 
-                  {assessment.improvementTip && (
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">
-                        {assessment.improvementTip}
-                      </p>
-                    </CardContent>
-                  )}
-                </Card>
-              );
-            })}
+                    {assessment.improvementTip && (
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">
+                          {assessment.improvementTip}
+                        </p>
+                      </CardContent>
+                    )}
+                  </Card>
+                );
+              })
+            ) : (
+              <p className="text-3xl font-bold text-muted-foreground text-center p-6">
+                You haven't attempted any quiz yet. Start a new quiz to see your
+                results here.
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
