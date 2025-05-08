@@ -63,10 +63,6 @@ export const generateQuiz = async () => {
 };
 
 export async function saveQuizResult(questions, answers, score) {
-  // console.log("questions from saveQuizResult interview.js", questions);
-  // console.log("answers from saveQuizResult interview.js", answers);
-  // console.log("score from saveQuizResult interview.js", score);
-
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 

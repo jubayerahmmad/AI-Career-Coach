@@ -40,8 +40,10 @@ export default function RootLayout({ children }) {
             {/* Footer */}
             <footer className="bg-muted/50 py-6 text-center text-gray-200">
               <p>
-                Made with ❤️ By{" "}
-                <span className="font-bold">Jubayer Ahmmad</span>
+                © All Rights Reserved By{" "}
+                <span className="bg-gradient-to-br from-blue-300 via-blue-400 to-blue-600 text-transparent bg-clip-text font-bold text-2xl">
+                  Intervise
+                </span>
               </p>
             </footer>
           </ThemeProvider>

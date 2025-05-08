@@ -1,9 +1,11 @@
-<h1 align="center">INTERVISE</h1>
-<p align="center"><strong>Your AI Career Assistant</strong></p>
+<div align="center">
+  <h1>INTERVISE</h1>
+  <p><strong>Your AI Career Assistant</strong></p>
+</div>
 
 ## 🚀 Overview
 
-**INTERVISE** Intervise is an AI-powered career development platform designed to help users prepare for job interviews, track growth, and build professional materials.
+**INTERVISE** is an AI-powered career development platform designed to help users prepare for job interviews, track growth, and build professional materials.
 
 Built with:
 

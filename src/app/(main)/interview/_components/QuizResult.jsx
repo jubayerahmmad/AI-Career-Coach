@@ -15,7 +15,7 @@ const QuizResult = ({ result, startNewQuiz, hideStartNewBtn = false }) => {
       <CardContent className="space-y-4">
         {/* Score Overview */}
         <div className="text-center space-y-2">
-          <h3 className="text-2xl font-bold">{result.quizScore}%</h3>
+          <h3 className="text-2xl font-bold">{result?.quizScore}%</h3>
           <Progress value={result.quizScore} className="w-full my-2" />
         </div>
 

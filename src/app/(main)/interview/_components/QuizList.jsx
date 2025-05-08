@@ -92,7 +92,7 @@ const QuizList = ({ assessments }) => {
       {/* Dialog */}
 
       <Dialog open={!!selectedQuiz} onOpenChange={() => setSelectedQuiz(null)}>
-        <DialogContent className="overflow-y-auto max-w-3xl max-h-[90vh]">
+        <DialogContent className="overflow-y-auto max-w-5xl max-h-[90vh]">
           <DialogHeader>
             <DialogTitle></DialogTitle>
           </DialogHeader>
