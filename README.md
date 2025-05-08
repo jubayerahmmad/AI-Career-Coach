@@ -1,6 +1,5 @@
-<h1 align="center">Intervise</h1>
-<p align="center"><em>Your AI Career Assistant</em></p>
----
+<h1 align="center">INTERVISE</h1>
+<p align="center"><strong>Your AI Career Assistant</strong></p>
 
 ## 🚀 Overview
 
@@ -19,15 +18,15 @@ Built with:
 
 ## ✨ Features
 
-- User authentication
+- AI-generated Industry Insights
+
+- Weekly industry insights (Inngest + Gemini API)
 
 - Mock interview quizzes
 
 - Explanation mode for quiz answers
 
 - AI-generated improvement suggestions
-
-- Weekly industry insights via scheduled tasks (Inngest + Gemini API)
 
 - Quiz result tracking
 
@@ -58,6 +57,7 @@ Planned Features:
 ```json
 "@clerk/nextjs": "^6.16.0",
 "@clerk/themes": "^2.2.34",
+"@google/genai": "^0.10.0",
 "@hookform/resolvers": "^5.0.1",
 "@prisma/client": "^6.6.0",
 "@radix-ui/react-accordion": "^1.2.7",
@@ -72,6 +72,7 @@ Planned Features:
 "@radix-ui/react-tabs": "^1.1.7",
 "class-variance-authority": "^0.7.1",
 "clsx": "^2.1.1",
+"date-fns": "^4.1.0",
 "inngest": "^3.35.0",
 "lucide-react": "^0.501.0",
 "next": "15.3.1",
@@ -79,6 +80,8 @@ Planned Features:
 "react": "^19.0.0",
 "react-dom": "^19.0.0",
 "react-hook-form": "^7.56.1",
+"react-spinners": "^0.17.0",
+"recharts": "^2.15.3",
 "sonner": "^2.0.3",
 "tailwind-merge": "^3.2.0",
 "tw-animate-css": "^1.2.5",
@@ -119,7 +122,7 @@ Planned Features:
    GEMINI_API_KEY=your_gemini_key
    ```
 
-4. **Push Prisma schema & seed database**
+4. **Migrate Prisma schema**
 
    ```bash
    npx prisma migrate dev --name create-models
