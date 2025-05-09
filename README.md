@@ -1,7 +1,4 @@
-<div align="center">
-  <h1>INTERVISE</h1>
-  <p><strong>Your AI Career Assistant</strong></p>
-</div>
+# INTERVISE - Your AI Career Assistant
 
 ## 🚀 Overview
 
@@ -12,7 +9,7 @@ Built with:
 - Next.js 15 App Router
 - ShadCN UI for sleek design
 - Clerk for authentication
-- Prisma ORM + PostgreSQL (via Neon)
+- Prisma ORM + PostgreSQL (via NeonDB)
 - React Hook Form + Zod validation
 - Sonner for toast notifications
 

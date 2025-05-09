@@ -36,7 +36,7 @@ const HeroSection = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <section className="w-full pt-36 md:pt-48 pb-10 z-50">
+    <section className="w-full pt-36 md:pt-48 pb-10 z-50 bg-gradient-to-b from-blue-500/50 via-blue-200/30 to-transparent">
       <div className="space-y-6 text-center">
         <div className="space-y-6 mx-auto">
           <h1 className="text-5xl font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title animate-gradient">
@@ -44,7 +44,7 @@ const HeroSection = () => {
             <br />
             Professional Success
           </h1>
-          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl">
+          <p className="mx-auto max-w-[600px] text-gray-400 md:text-xl">
             Advance your career with personalized guidance, interview prep, and
             AI-powered tools for job success.
           </p>
@@ -63,8 +63,11 @@ const HeroSection = () => {
           </Link>
         </div>
 
-        <div className="hero-image-wrapper">
-          <div ref={imgRef} className="hero-image">
+        <div className="hero-image-wrapper w-fit mx-auto">
+          <div
+            ref={imgRef}
+            className="hero-image p-2 bg-gradient-to-tl from-blue-100/40 via-blue-300/50 to-blue-500/20  rounded-2xl"
+          >
             <Image
               src="/banner.jpeg"
               width={1280}
