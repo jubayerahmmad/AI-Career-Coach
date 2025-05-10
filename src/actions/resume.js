@@ -54,7 +54,7 @@ export const getResume = async () => {
   return resume;
 };
 
-export const improveWithAi = async () => {
+export const improveWithAi = async ({ current, type }) => {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 

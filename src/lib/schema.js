@@ -32,3 +32,41 @@ export const onboardingSchema = z.object({
           : undefined // 5. If the string was empty, return undefined
     ),
 });
+
+export const contactSchema = z.object({
+  email: z.string().email("Invalid Email Address"),
+  mobile: z.string().optional(),
+  linkedin: z.string().optional(),
+  twitter: z.string().optional(),
+});
+
+export const entrySchema = z
+  .object({
+    title: z.string().min(1, "Title is Required"),
+    organization: z.string().min(1, "Organization is Required"),
+    startDate: z.string().min(1, "Start Date is Required"),
+    endDate: z.string().optional(),
+    description: z.string().min(1, "Description is Required"),
+    current: z.boolean().default(false),
+  })
+  .refine(
+    (data) => {
+      if (!data.current && !data.endDate) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: "End Date is required unless this is your current position",
+      path: ["endDate"],
+    }
+  );
+
+export const resumeSchema = z.object({
+  contactInfo: contactSchema,
+  summary: z.string().min(1, "Summary is Required"),
+  skills: z.string().min(1, "Skills are Required"),
+  experience: z.array(entrySchema),
+  education: z.array(entrySchema),
+  projects: z.array(entrySchema),
+});

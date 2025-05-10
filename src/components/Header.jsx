@@ -50,7 +50,7 @@ const Header = async () => {
                 </Button>
               </Link>
 
-              <DropdownMenu>
+              <DropdownMenu className="border-4 border-red-500">
                 <DropdownMenuTrigger asChild>
                   <Button>
                     <StarsIcon className="h-4 w-4" />

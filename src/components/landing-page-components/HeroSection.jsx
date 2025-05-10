@@ -66,14 +66,14 @@ const HeroSection = () => {
         <div className="hero-image-wrapper w-fit mx-auto">
           <div
             ref={imgRef}
-            className="hero-image p-2 bg-gradient-to-tl from-blue-100/40 via-blue-300/50 to-blue-500/20  rounded-2xl"
+            className="hero-image p-1 bg-gradient-to-tl from-blue-600/40 via-blue-500 to-blue-900/50  rounded-2xl"
           >
             <Image
               src="/banner.jpeg"
               width={1280}
               height={720}
               alt="Dashboard Preview"
-              className="rounded-lg shadow-2xl border mx-auto"
+              className="rounded-2xl shadow-2xl border mx-auto"
               priority
             />
           </div>

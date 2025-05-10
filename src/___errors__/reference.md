@@ -8,7 +8,7 @@ The `<SignIn />` component did not render properly. Even though the user was alr
 **Important Note:**  
 This is **not an actual error** from Clerk. It happens because when a user is already signed in, Clerk automatically redirects to the `afterSignIn` URL. If not handled properly in the UI, it may still show a Sign In button.
 
-in concole it showed this:
+in console it showed this:
 Clerk: Clock skew detected. This usually means that your system clock is inaccurate. Clerk will attempt to account for the clock skew in development.
 
 To resolve this issue, make sure your system's clock is set to the correct time (e.g. turn off and on automatic time synchronization).
