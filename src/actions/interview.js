@@ -23,10 +23,10 @@ export const generateQuiz = async () => {
   });
   if (!user) throw new Error("User Not Found");
 
-  console.log("user from interview.js--> ", user); // user:{industry: terch-software-development, skills:[js,py]}
+  // console.log("user from interview.js--> ", user); // user:{industry: terch-software-development, skills:[js,py]}
 
   const prompt = `
-    Generate 4 technical interview questions for a ${
+    Generate 10 technical interview questions for a ${
       user.industry
     } professional${
     user.skills?.length ? ` with expertise in ${user.skills.join(", ")}` : ""
@@ -52,7 +52,7 @@ export const generateQuiz = async () => {
     });
 
     const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
-    console.log("text from interview (JSON)", text);
+
     const quiz = JSON.parse(text);
 
     return quiz.questions;
@@ -111,7 +111,6 @@ export async function saveQuizResult(questions, answers, score) {
       });
 
       improvementTip = tipResult.text.trim();
-      // console.log("improvementTip :", improvementTip);
     } catch (error) {
       console.error("Error generating improvement tip:", error);
       // Continue without improvement tip if generation fails

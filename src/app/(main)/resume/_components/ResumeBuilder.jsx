@@ -9,15 +9,27 @@ import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/useFetch";
 import { resumeSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Download, Loader2, Save } from "lucide-react";
+import {
+  AlertTriangle,
+  Download,
+  Edit,
+  Loader2,
+  Monitor,
+  Save,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import EntryForm from "./EntryForm";
+import { entriesToMarkdown, getContactMarkdown } from "@/lib/toMarkdown";
+import MDEditor from "@uiw/react-md-editor";
+import { useUser } from "@clerk/nextjs";
 
 const ResumeBuilder = ({ initialContent }) => {
   const [isGenerating, setIsGenerating] = useState(false);
-
+  const [resumeMode, setResumeMode] = useState("preview");
+  const [previewContent, setPreviewContent] = useState(initialContent);
   const [activeTab, setActiveTab] = useState("edit");
+  const { user } = useUser();
 
   const {
     control,
@@ -44,11 +56,35 @@ const ResumeBuilder = ({ initialContent }) => {
     error: saveError,
   } = useFetch(saveResume);
 
+  // Watch form fields for preview updates
   const formValues = watch();
 
   useEffect(() => {
     if (initialContent) setActiveTab("preview");
   }, [initialContent]);
+
+  useEffect(() => {
+    if (activeTab === "edit") {
+      const newContent = getCombinedContent();
+      setPreviewContent(newContent ? newContent : initialContent);
+    }
+  }, [formValues, activeTab]);
+
+  const getCombinedContent = () => {
+    const { summary, skills, education, projects, experience, contactInfo } =
+      formValues;
+
+    return [
+      getContactMarkdown(contactInfo, user),
+      summary && `# Professional Summary\n\n${summary}`,
+      skills && `# Skills\n\n${skills}`,
+      entriesToMarkdown(experience, "Work Experience"),
+      entriesToMarkdown(projects, "Projects"),
+      entriesToMarkdown(education, "Education"),
+    ]
+      .filter(Boolean)
+      .join("\n\n");
+  };
 
   return (
     <div className="space-y-2">
@@ -169,14 +205,17 @@ const ResumeBuilder = ({ initialContent }) => {
               <Controller
                 name="summary"
                 control={control}
-                render={({ field }) => (
-                  <Textarea
-                    {...field}
-                    className="h-32"
-                    placeholder="Write an attractive summary"
-                    error={errors.summary}
-                  />
-                )}
+                render={({ field }) => {
+                  // console.log("FIELD from summary controller", field);
+                  return (
+                    <Textarea
+                      {...field}
+                      className="h-32"
+                      placeholder="Write an attractive summary"
+                      error={errors.summary}
+                    />
+                  );
+                }}
               />
               {errors.summary && (
                 <p className="text-sm text-red-500">{errors.summary.message}</p>
@@ -209,13 +248,16 @@ const ResumeBuilder = ({ initialContent }) => {
               <Controller
                 name="experience"
                 control={control}
-                render={({ field }) => (
-                  <EntryForm
-                    type="Experience"
-                    entries={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
+                render={({ field }) => {
+                  // console.log("FIELD from experience controller", field);
+                  return (
+                    <EntryForm
+                      type="Experience"
+                      entries={field.value}
+                      onChange={field.onChange}
+                    />
+                  );
+                }}
               />
               {errors.experience && (
                 <p className="text-sm text-red-500">
@@ -267,7 +309,59 @@ const ResumeBuilder = ({ initialContent }) => {
             </div>
           </form>
         </TabsContent>
-        <TabsContent value="preview">Change your password here.</TabsContent>
+        <TabsContent value="preview">
+          <Button
+            type="button"
+            variant="link"
+            size="sm"
+            className="mb-2"
+            onClick={() =>
+              setResumeMode(resumeMode === "preview" ? "edit" : "preview")
+            }
+          >
+            {resumeMode === "preview" ? (
+              <>
+                <Edit />
+                Edit Resume
+              </>
+            ) : (
+              <>
+                <Monitor />
+                Show Preview
+              </>
+            )}
+          </Button>
+          {resumeMode !== "preview" && (
+            <div className="flex p-3 gap-2 items-center border-2 border-yellow-600 text-yellow-600 rounded mb-2">
+              <AlertTriangle className="h-5 w-5" />
+              <span className="text-sm">
+                You will lose editied markdown if you update the form data.
+              </span>
+            </div>
+          )}
+
+          <div className="border rounded-lg">
+            {/* MarkDown Editor */}
+            <MDEditor
+              value={previewContent}
+              onChange={setPreviewContent}
+              height={800}
+              preview={resumeMode}
+            />
+          </div>
+          {/*  pdf */}
+          <div className="hidden">
+            <div id="resume-pdf">
+              <MDEditor.Markdown
+                source={previewContent}
+                style={{
+                  background: "white",
+                  color: "black",
+                }}
+              />
+            </div>
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );

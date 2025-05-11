@@ -2,7 +2,7 @@
 
 ## 🚀 Overview
 
-**INTERVISE** is an AI-powered career development platform designed to help users prepare for job interviews, track growth, and build professional materials.
+**INTERVISE** is an AI-powered platform designed to help job seekers accelerate their career journey. From crafting tailored resumes and cover letters to staying updated with weekly industry insights, Intervise is your intelligent companion for career development.
 
 Built with:
 
@@ -31,7 +31,7 @@ Built with:
 
 Planned Features:
 
-- AI-powered resume builder
+- Resume builder
 
 - AI-powered cover letter builder
 
@@ -69,6 +69,7 @@ Planned Features:
 "@radix-ui/react-select": "^2.2.2",
 "@radix-ui/react-slot": "^1.2.0",
 "@radix-ui/react-tabs": "^1.1.7",
+"@uiw/react-md-editor": "^4.0.6",
 "class-variance-authority": "^0.7.1",
 "clsx": "^2.1.1",
 "date-fns": "^4.1.0",
@@ -77,6 +78,7 @@ Planned Features:
 "next": "15.3.1",
 "next-themes": "^0.4.6",
 "react": "^19.0.0",
+"html2pdf.js": "^0.10.3",
 "react-dom": "^19.0.0",
 "react-hook-form": "^7.56.1",
 "react-spinners": "^0.17.0",

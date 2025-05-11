@@ -43,7 +43,7 @@ export const contactSchema = z.object({
 export const entrySchema = z
   .object({
     title: z.string().min(1, "Title is Required"),
-    organization: z.string().min(1, "Organization is Required"),
+    organization: z.string().optional(),
     startDate: z.string().min(1, "Start Date is Required"),
     endDate: z.string().optional(),
     description: z.string().min(1, "Description is Required"),

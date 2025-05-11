@@ -9,10 +9,10 @@ const useFetch = (callback) => {
   const fn = async (...args) => {
     setLoading(true);
     setError(null);
-    console.log("args from useFetch", args);
+    // console.log("args from useFetch", args);
     try {
       const response = await callback(...args);
-      console.log("response from useFetch", response);
+      // console.log("response from useFetch", response);
       setData(response);
       setError(null);
     } catch (error) {

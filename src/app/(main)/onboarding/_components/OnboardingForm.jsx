@@ -84,9 +84,8 @@ const OnboardingForm = ({ industries }) => {
             <div className="space-y-2.5">
               <Label htmlFor="industry">Industry</Label>
               <Select
+                // here value is the id of each industry object e.g, 'technology ,nonprofit'
                 onValueChange={(value) => {
-                  console.log("select--->", value); // here value is the id of each industry object e.g, 'technology ,nonprofit'
-
                   // Update the 'industry' field in the form
                   setValue("industry", value);
 

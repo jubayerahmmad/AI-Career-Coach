@@ -34,8 +34,6 @@ export const generateAIInsights = async (industry) => {
 
   const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
 
-  console.log("full response from ai dashboard.js -->", response);
-
   return JSON.parse(text);
 };
 
@@ -64,7 +62,6 @@ export const getIndustryInsights = async () => {
         nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
-    console.log("industry insight from dashboard.js", industryInsight);
 
     return industryInsight;
   }

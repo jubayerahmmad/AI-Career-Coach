@@ -29,7 +29,7 @@ const Quiz = () => {
     data: quizData,
   } = useFetch(generateQuiz);
 
-  console.log("quizData from Quiz.jsx", quizData);
+  // console.log("quizData from Quiz.jsx", quizData);
 
   const {
     loading: savingResult,
@@ -38,7 +38,7 @@ const Quiz = () => {
     setData: setResultData,
   } = useFetch(saveQuizResult);
 
-  console.log("Quiz resultData from quiz/jsx", resultData);
+  // console.log("Quiz resultData from quiz/jsx", resultData);
 
   /**
    * When quiz data is loaded, create an array of nulls (one for each question)
@@ -77,11 +77,11 @@ const Quiz = () => {
   const question = quizData[currentQuestion];
 
   const handleAnswer = (answer) => {
-    console.log("answer from handleAnswer", answer);
+    // console.log("answer from handleAnswer", answer);
     const newAnswers = [...answers]; // Shallow copy of the answers array
     newAnswers[currentQuestion] = answer;
     setAnswers(newAnswers);
-    console.log("newAnswers from quiz", newAnswers);
+    // console.log("newAnswers from quiz", newAnswers);
   };
 
   const handleNext = () => {

@@ -87,7 +87,7 @@ export const improveWithAi = async ({ current, type }) => {
   try {
     const response = await getAIResponse(prompt);
     const improvedContent = response.trim();
-    console.log(improvedContent);
+
     return improvedContent;
   } catch (error) {
     console.error("Error improving content:", error);

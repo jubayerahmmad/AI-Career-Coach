@@ -11,7 +11,6 @@ const Dashboard = async () => {
   if (!isOnboarded) redirect("/onboarding");
 
   const insights = await getIndustryInsights();
-  // console.log("insights from dashboard", insights);
 
   return (
     <div className="container mx-auto">

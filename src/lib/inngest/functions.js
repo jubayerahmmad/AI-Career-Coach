@@ -19,7 +19,6 @@ export const generateIndustryInsights = inngest.createFunction(
     });
 
     for (const { industry } of industries) {
-      console.log("industry from inngest func", industry);
       const prompt = `
         Analyze the current state of the ${industry} industry and provide insights in ONLY the following JSON format without any additional notes or explanations:
         {
@@ -53,7 +52,7 @@ export const generateIndustryInsights = inngest.createFunction(
         prompt
       );
 
-      console.log("res from inngest function", res);
+      // console.log("res from inngest function", res);
       const text = res.candidates[0].content?.parts[0].text || "";
       const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
 

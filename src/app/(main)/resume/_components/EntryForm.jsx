@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -13,10 +14,17 @@ import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/useFetch";
 import { entrySchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, PlusCircle, Sparkles } from "lucide-react";
+import { format, parse } from "date-fns";
+import { Loader2, PlusCircle, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+
+const formatDateDisplay = (dateString) => {
+  if (!dateString) return "";
+  const date = parse(dateString, "yyyy-MM", new Date());
+  return format(date, "MMM yyyy");
+};
 
 const EntryForm = ({ type, onChange, entries }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -48,8 +56,23 @@ const EntryForm = ({ type, onChange, entries }) => {
     error: improveError,
   } = useFetch(improveWithAi);
 
-  const handleDelete = () => {};
-  const handleAdd = () => {};
+  const handleDelete = (index) => {
+    const newEntries = entries.filter((_, i) => i !== index);
+    onChange(newEntries);
+  };
+
+  const handleAdd = handleValidation((data) => {
+    const formattedEntry = {
+      ...data,
+      startDate: formatDateDisplay(data.startDate),
+      endDate: data.current ? "" : formatDateDisplay(data.endDate),
+    };
+
+    onChange([...entries, formattedEntry]);
+    reset();
+    setIsAdding(false);
+  });
+
   const handleImproveDesc = async () => {
     const description = watch("description");
     if (!description) {
@@ -73,7 +96,43 @@ const EntryForm = ({ type, onChange, entries }) => {
   }, [improvedContent, setValue, improveError, isImproving]);
 
   return (
-    <div>
+    <div className="space-y-4">
+      <div className="space-y-4">
+        {entries?.map((entry, index) => (
+          <Card key={index}>
+            <CardHeader className="flex items-center justify-between py-1.5">
+              <div className="space-y-1">
+                <CardTitle className="text-lg font-medium">
+                  {entry.title}{" "}
+                  {entry?.organization
+                    ? `at  ${entry?.organization}`
+                    : "(Personal Project)"}
+                </CardTitle>
+                <CardDescription>
+                  <p className="text-sm text-muted-foreground">
+                    {entry.current
+                      ? `${entry.startDate} - Present`
+                      : `${entry.startDate} - ${entry.endDate}`}
+                  </p>
+                </CardDescription>
+              </div>
+              <Button
+                variant="outline"
+                size="icon"
+                type="button"
+                onClick={() => handleDelete(index)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </CardHeader>
+            <CardContent className="">
+              <p className="text-base whitespace-pre-wrap">
+                {entry.description}
+              </p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
       {isAdding && (
         <Card>
           <CardHeader>

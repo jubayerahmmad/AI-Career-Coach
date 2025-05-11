@@ -8,7 +8,6 @@ const getAIResponse = async (prompt) => {
     contents: prompt,
   });
   const text = response.text;
-  console.log("ai response text from getAIResponse", text);
 
   return text;
 };
