@@ -23,6 +23,7 @@ import EntryForm from "./EntryForm";
 import { entriesToMarkdown, getContactMarkdown } from "@/lib/toMarkdown";
 import MDEditor from "@uiw/react-md-editor";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 const ResumeBuilder = ({ initialContent }) => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -86,6 +87,28 @@ const ResumeBuilder = ({ initialContent }) => {
       .join("\n\n");
   };
 
+  const genaratePDF = async () => {
+    setIsGenerating(true);
+    try {
+      const html2pdf = (await import("html2pdf.js/dist/html2pdf.min.js"))
+        .default;
+      const element = document.getElementById("resume-pdf");
+      const options = {
+        margin: [15, 15],
+        fileName: "resume.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      };
+      await html2pdf().set(options).from(element).save();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed Downloading PDF!");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   return (
     <div className="space-y-2">
       <div className="flex flex-col md:flex-row justify-between items-center gap-2">
@@ -106,7 +129,7 @@ const ResumeBuilder = ({ initialContent }) => {
               </>
             )}
           </Button>
-          <Button>
+          <Button onClick={genaratePDF}>
             {isGenerating ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
