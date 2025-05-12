@@ -109,6 +109,21 @@ const ResumeBuilder = ({ initialContent }) => {
     }
   };
 
+  // save resume
+  useEffect(() => {
+    if (!isSaving && saveResult) toast.success("Resume Saved Successfully");
+
+    if (saveError) toast.error(saveError?.message || "Resume Saving Failed!");
+  }, [isSaving, saveError, saveResult]);
+
+  const handleSaveResume = async () => {
+    try {
+      await saveResumeFn(previewContent);
+    } catch (error) {
+      console.error("Saving Resume Error", error);
+    }
+  };
+
   return (
     <div className="space-y-2">
       <div className="flex flex-col md:flex-row justify-between items-center gap-2">
@@ -116,7 +131,7 @@ const ResumeBuilder = ({ initialContent }) => {
           Resume Builder
         </h1>
         <div className="space-x-2">
-          <Button variant="destructive">
+          <Button variant="destructive" onClick={handleSaveResume}>
             {isSaving ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
