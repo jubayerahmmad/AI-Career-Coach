@@ -19,9 +19,9 @@ const Testimonial = () => {
                       <Image
                         width={40}
                         height={40}
-                        src={testimonial.image}
+                        src={testimonial?.image}
                         alt={testimonial.author}
-                        className="rounded-full object-cover border-2 border-primary/20"
+                        className="rounded-full object-cover border-2 h-10 w-10 border-primary/20"
                       />
                     </div>
                     <div>
