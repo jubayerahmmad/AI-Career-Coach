@@ -1,19 +1,50 @@
 "use client";
 
+import { generateCoverLetter } from "@/actions/coverLetter";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import useFetch from "@/hooks/useFetch";
+import { coverLetterSchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const CoverLetterForm = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(coverLetterSchema),
+  });
+
+  const {
+    loading: isGenerating,
+    fn: generateLetterFn,
+    data: generatedLetter,
+  } = useFetch(generateCoverLetter);
+
+  const onSubmit = async (data) => {
+    try {
+      await generateLetterFn(data);
+    } catch (error) {
+      toast.error("Error generating Cover Letter");
+    }
+  };
+
   return (
     <div className="my-4">
       <Card>
@@ -24,35 +55,61 @@ const CoverLetterForm = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="company">Company Name</Label>
-              <Input
-                placeholder="Enter company Name"
-                type="text"
-                id="company"
-              />
-            </div>
+          <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
+            <div className=" grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="company">Company Name</Label>
+                <Input
+                  placeholder="Enter company Name"
+                  type="text"
+                  id="company"
+                  {...register("company")}
+                />
+                {errors.company && (
+                  <p className="text-sm text-red-500">
+                    {errors.company.message}
+                  </p>
+                )}
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="jobTitle">Job Title</Label>
-              <Input placeholder="Enter Job Title" type="text" id="jobTitle" />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="jobTitle">Job Title</Label>
+                <Input
+                  placeholder="Enter Job Title"
+                  type="text"
+                  id="jobTitle"
+                  {...register("jobTitle")}
+                />
+                {errors.jobTitle && (
+                  <p className="text-sm text-red-500">
+                    {errors.jobTitle.message}
+                  </p>
+                )}
+              </div>
 
-            <div className="space-y-2 col-span-2">
-              <Label htmlFor="jobDescription">Job Description</Label>
-              <Textarea
-                placeholder="Paste Job Description here"
-                type="text"
-                id="jobDescription"
-                className="h-32"
-              />
+              <div className="space-y-2 col-span-2">
+                <Label htmlFor="jobDescription">Job Description</Label>
+                <Textarea
+                  placeholder="Paste Job Description here"
+                  type="text"
+                  id="jobDescription"
+                  className="h-32"
+                  {...register("jobDescription")}
+                />
+                {errors.jobDescription && (
+                  <p className="text-sm text-red-500">
+                    {errors.jobDescription.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <Button>
+                <Sparkles /> Generate Cover Letter
+              </Button>
             </div>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-end">
-          <Button>Generate Cover Letter</Button>
-        </CardFooter>
       </Card>
     </div>
   );

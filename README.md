@@ -136,8 +136,27 @@ Planned Features:
 
 ---
 
-## 🙌 Contributing
+## 🌐 Live Demo
 
-Contributions are welcome! Open issues, suggest features, or fork and create a pull request.
+Check out the live application here: [INTERVISE](https://intervise.vercel.app/)
 
----
+## 🧪 Testing Features
+
+1. **Login**
+
+   - Navigate to the [login page](https://intervise.vercel.app/login).
+   - Use your credentials or sign up for a new account.
+
+2. **Onboarding Form Completion**
+
+   - After signing up, you'll be redirected to the onboarding form.
+   - Select your preferred industry and skills to personalize your experience.
+   - Submit the form to complete the onboarding process.
+
+3. **Exploring Features**
+   - Access the dashboard to view AI-generated industry insights.
+   - Take mock interview quizzes and review explanations for answers.
+   - Track your quiz results and view improvement suggestions.
+   - Stay updated with weekly industry insights.
+   - Build resumes with resume builder.
+   - Create personalized cover letters using the AI cover letter builder.

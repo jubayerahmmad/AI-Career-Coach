@@ -9,7 +9,7 @@ const CreateNewPage = () => {
         Create Cover Letters
       </h1>
       <p className="text-muted-foreground px-0.5">
-        Generate a tailored Cover Letter for your Job Application
+        Generate a tailored Cover Letter with AI for your Job Application
       </p>
 
       <CoverLetterForm />
