@@ -100,7 +100,7 @@ const CoverLetterForm = () => {
               <div className="space-y-2 col-span-2">
                 <Label htmlFor="jobDescription">Job Description</Label>
                 <Textarea
-                  placeholder="Paste Job Description here"
+                  placeholder="Paste Job Description here (Requirements)"
                   type="text"
                   id="jobDescription"
                   className="h-32"
