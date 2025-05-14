@@ -50,7 +50,7 @@ const PerformanceChart = ({ assessments }) => {
                   if (active && payload?.length) {
                     // console.log("payload from tooltip recharts", payload);
                     return (
-                      <div className="bg-background border rounded-lg shadow-xl">
+                      <div className="bg-background border rounded-lg shadow-xl p-2">
                         <p className="font-medium text-sm">
                           Score: {payload[0].value} %
                         </p>

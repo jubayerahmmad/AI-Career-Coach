@@ -1,10 +1,8 @@
 "use server";
 
+import getAIResponse from "@/lib/getAiResponse";
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export const generateAIInsights = async (industry) => {
   const prompt = `
@@ -27,12 +25,9 @@ export const generateAIInsights = async (industry) => {
     Include at least 5 skills and trends.
   `;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: prompt,
-  });
+  const response = await getAIResponse(prompt);
 
-  const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
+  const text = response.replace(/```(?:json)?\n?/g, "").trim();
 
   return JSON.parse(text);
 };

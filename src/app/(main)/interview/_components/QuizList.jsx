@@ -33,7 +33,7 @@ const QuizList = ({ assessments }) => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="gradient-title text-3xl md:text-4xl">
+              <CardTitle className="gradient-title text-2xl md:text-4xl">
                 Recent Quizzes
               </CardTitle>
               <CardDescription>

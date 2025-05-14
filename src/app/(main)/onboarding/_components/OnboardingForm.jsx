@@ -46,12 +46,12 @@ const OnboardingForm = ({ industries }) => {
   const { loading, fn: updateUserFn } = useFetch(updateUser);
 
   const handleOnSubmit = async (values) => {
-    console.log("form value", values);
+    // console.log("form value", values);
     try {
       const formattedIndustry = `${values.industry}-${values.subIndustry
         .toLowerCase()
         .replace(/ /g, "-")}`; // lowercase & replace spaces with hyphens
-      console.log("formattedIndustry", formattedIndustry);
+      // console.log("formattedIndustry", formattedIndustry);
       await updateUserFn({
         ...values,
         industry: formattedIndustry,

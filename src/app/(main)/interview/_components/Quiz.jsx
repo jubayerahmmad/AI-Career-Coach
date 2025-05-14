@@ -55,7 +55,7 @@ const Quiz = () => {
 
   if (!quizData) {
     return (
-      <Card className="mx-2">
+      <Card className="">
         <CardHeader>
           <CardTitle>Ready to test your knowledge?</CardTitle>
         </CardHeader>

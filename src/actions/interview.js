@@ -1,11 +1,8 @@
 "use server";
 
+import getAIResponse from "@/lib/getAiResponse";
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { GoogleGenAI } from "@google/genai";
-
-// export const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY }); // A "use server" file can only export async functions, found object.
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Generate Quiz
 export const generateQuiz = async () => {
@@ -46,12 +43,9 @@ export const generateQuiz = async () => {
   `;
 
   try {
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: prompt,
-    });
+    const response = await getAIResponse(prompt);
 
-    const text = response.text.replace(/```(?:json)?\n?/g, "").trim();
+    const text = response.replace(/```(?:json)?\n?/g, "").trim();
 
     const quiz = JSON.parse(text);
 
@@ -105,12 +99,9 @@ export async function saveQuizResult(questions, answers, score) {
       `;
 
     try {
-      const tipResult = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: improvementPrompt,
-      });
+      const tipResult = await getAIResponse(improvementPrompt);
 
-      improvementTip = tipResult.text.trim();
+      improvementTip = tipResult.trim();
     } catch (error) {
       console.error("Error generating improvement tip:", error);
       // Continue without improvement tip if generation fails

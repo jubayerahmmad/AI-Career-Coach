@@ -9,7 +9,7 @@ const CoverLetter = async () => {
   return (
     <div className="container mx-auto px-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl md:text-5xl font-bold gradient-title">
+        <h1 className="text-2xl md:text-5xl font-bold gradient-title">
           My Cover Letters
         </h1>
         <Link href="/ai-cover-letter/new">

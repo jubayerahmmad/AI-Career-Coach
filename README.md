@@ -29,8 +29,6 @@ Built with:
 
 - Quiz result tracking
 
-Planned Features:
-
 - Resume builder
 
 - AI-powered cover letter builder

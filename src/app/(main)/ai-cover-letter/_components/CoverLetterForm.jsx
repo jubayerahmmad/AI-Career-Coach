@@ -38,7 +38,7 @@ const CoverLetterForm = () => {
     data: generatedLetter,
   } = useFetch(generateCoverLetter);
 
-  console.log("cover letter", generatedLetter);
+  // console.log("cover letter", generatedLetter);
   useEffect(() => {
     if (generatedLetter) {
       toast.success("Cover letter generated successfully!");
@@ -97,7 +97,7 @@ const CoverLetterForm = () => {
                 )}
               </div>
 
-              <div className="space-y-2 col-span-2">
+              <div className="space-y-2 md:col-span-2">
                 <Label htmlFor="jobDescription">Job Description</Label>
                 <Textarea
                   placeholder="Paste Job Description here (Requirements)"

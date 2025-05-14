@@ -42,7 +42,7 @@ export const generateIndustryInsights = inngest.createFunction(
       const res = await step.ai.wrap(
         "gemini",
         async (p) => {
-          console.log("p ==>", p);
+          // console.log("p ==>", p);
 
           return await ai.models.generateContent({
             model: "gemini-2.0-flash",

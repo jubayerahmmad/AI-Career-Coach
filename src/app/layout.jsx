@@ -5,13 +5,14 @@ import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
+import ScrollUnlocker from "@/components/ScrollUnlocker";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Intervise | Your AI Career Assistant",
   description:
-    "An AI-powered career coaching platform to guide you towards success.",
+    "An AI-powered platform designed to help job seekers accelerate their career journey. From crafting tailored resumes and cover letters to staying updated with weekly industry insights, Intervise is your intelligent companion for career development.",
 };
 
 export default function RootLayout({ children }) {
@@ -35,7 +36,10 @@ export default function RootLayout({ children }) {
           >
             {/* header */}
             <Header />
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-screen">
+              <ScrollUnlocker />
+              {children}
+            </main>
             <Toaster richColors />
             {/* Footer */}
             <footer className="bg-muted/50 py-6 text-center text-gray-200">
