@@ -15,8 +15,9 @@ import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/useFetch";
 import { coverLetterSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Sparkles } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -36,6 +37,15 @@ const CoverLetterForm = () => {
     fn: generateLetterFn,
     data: generatedLetter,
   } = useFetch(generateCoverLetter);
+
+  console.log("cover letter", generatedLetter);
+  useEffect(() => {
+    if (generatedLetter) {
+      toast.success("Cover letter generated successfully!");
+      router.push(`/ai-cover-letter/${generatedLetter.id}`);
+      reset();
+    }
+  }, [generatedLetter]);
 
   const onSubmit = async (data) => {
     try {
@@ -104,8 +114,17 @@ const CoverLetterForm = () => {
               </div>
             </div>
             <div className="flex justify-end">
-              <Button>
-                <Sparkles /> Generate Cover Letter
+              <Button type="submit" disabled={isGenerating}>
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles /> Generate Cover Letter
+                  </>
+                )}
               </Button>
             </div>
           </form>

@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import CoverLetterList from "./_components/CoverLetterList";
+import { getAllCoverLetter } from "@/actions/coverLetter";
 
-const CoverLetter = () => {
+const CoverLetter = async () => {
+  const coverLetters = await getAllCoverLetter();
   return (
     <div className="container mx-auto px-6">
       <div className="flex justify-between items-center">
@@ -16,6 +19,7 @@ const CoverLetter = () => {
           </Button>
         </Link>
       </div>
+      <CoverLetterList coverLetters={coverLetters} />
     </div>
   );
 };

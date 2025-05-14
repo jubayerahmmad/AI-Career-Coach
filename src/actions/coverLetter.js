@@ -2,7 +2,7 @@
 
 import getAIResponse from "@/lib/getAiResponse";
 import { db } from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/dist/types/server";
+import { auth } from "@clerk/nextjs/server";
 
 export const generateCoverLetter = async (data) => {
   const { userId } = await auth();
